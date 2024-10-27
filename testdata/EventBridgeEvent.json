@@ -1,0 +1,19 @@
+{
+  "version": "0",
+  "id": "767be9c7-7aa3-8d28-8cd1-1990c4b14781",
+  "detail-type": "thing-created",
+  "source": "my-api",
+  "account": "12341234123",
+  "time": "2024-10-27T08:41:57Z",
+  "region": "eu-north-1",
+  "resources": [],
+  "detail": {
+    "metadata": {
+      "emittedAt": "1730018517798"
+    },
+    "data": {
+      "organizationId": "abc123",
+      "recordId": "qwerty"
+    }
+  }
+}

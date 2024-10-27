@@ -1,0 +1,32 @@
+{
+  "body": "{\"organizationId\": \"abc123\",\"recordId\":\"qwerty\"}",
+  "cookies": [],
+  "headers": { "host": "localhost:3000", "user-agent": "curl/8.7.1", "accept": "*/*" },
+  "isBase64Encoded": false,
+  "pathParameters": { "organizationId": "abc123", "recordId": "qwerty" },
+  "queryStringParameters": { "organizationId": "abc123", "recordId": "qwerty" },
+  "rawPath": "/token/regenerate/asdf/asdf",
+  "rawQueryString": "",
+  "requestContext": {
+    "accountId": "offlineContext_accountId",
+    "apiId": "offlineContext_apiId",
+    "authorizer": { "lambda": { "organizationId": "abc123", "recordId": "qwerty" }, "jwt": {} },
+    "domainName": "offlineContext_domainName",
+    "domainPrefix": "offlineContext_domainPrefix",
+    "http": {
+      "method": "POST",
+      "path": "/token/regenerate/asdf/asdf",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "::1",
+      "userAgent": "curl/8.7.1"
+    },
+    "requestId": "offlineContext_resourceId",
+    "routeKey": "POST /token/regenerate/{organizationId}/{recordId}",
+    "stage": "$default",
+    "time": "27/Oct/2024:13:38:05 +0100",
+    "timeEpoch": 1730032685994
+  },
+  "routeKey": "POST /token/regenerate/{organizationId}/{recordId}",
+  "stageVariables": null,
+  "version": "2.0"
+}
