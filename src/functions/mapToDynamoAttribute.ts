@@ -2,7 +2,7 @@
  * @description Map out values as DynamoDB attributes.
  * Use this to convert JSON to a shape ready to use with DynamoDB.
  *
- * Supports mapping to:
+ * Supports mapping
  *- `NULL`
  *- `BOOL`
  *- `S`
@@ -10,7 +10,7 @@
  *- `L`
  *- `M`
  */
-export function mapToDynamoAttribute(value: any): any {
+export function mapToDynamoAttribute(value: any): Record<string, any> {
   if (value === null) return { NULL: true }; // Explicitly handle null values
   if (typeof value === 'boolean') return { BOOL: value };
   else if (typeof value === 'string') return { S: value };
