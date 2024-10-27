@@ -18,10 +18,12 @@
     "url": "git+https://github.com/mikaelvesavuori/aws-serverless-utils.git"
   },
   "keywords": [
-    "node.js",
-    "node",
-    "hash",
-    "hashing"
+    "aws",
+    "serverless",
+    "utility-functions",
+    "lambda",
+    "eventbridge",
+    "dynamodb"
   ],
   "bugs": {
     "url": "https://github.com/mikaelvesavuori/aws-serverless-utils/issues"
