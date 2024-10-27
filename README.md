@@ -4,10 +4,14 @@
 
 ![Build Status](https://github.com/mikaelvesavuori/aws-serverless-utils/workflows/main/badge.svg)
 
+[![codecov](https://codecov.io/gh/mikaelvesavuori/aws-serverless-utils/graph/badge.svg?token=FLNTPTAYAS)](https://codecov.io/gh/mikaelvesavuori/aws-serverless-utils)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/937c2275a4ad46fe265a/maintainability)](https://codeclimate.com/github/mikaelvesavuori/aws-serverless-utils/maintainability)
+
 Serverless is awesome but what happens when you have a ton of microservices and small APIs? Well, you replicate the same boring boilerplate everywhere, that's what happens! This packages resolves some of those issues.
 
 - Saves you time when building AWS serverless solutions
-- Sensible helpers for common boilerplate boring stuff
+- Sensible helpers for common boring boilerplate stuff
 - Lightweight
 - Zero dependencies
 - Has 100% test coverage
