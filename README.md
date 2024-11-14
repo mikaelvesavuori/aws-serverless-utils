@@ -45,6 +45,16 @@ return end(200, { timeCreated: '2024-10-27', itemId: 'abc123' }); // Returns a 2
 return end(200, null, { 'X-Custom-Header': 'custom-value' }); // Replaces the headers with a custom set of headers
 ```
 
+### `endWithError()`
+
+Utility function to create a valid AWS Lambda response object when encountering an error.
+
+MikroLog will be initialized to log the error; because it's static, it will reuse any previous configuration.
+
+The resulting status code will be the value of `error.cause.statusCode` or it'll use the default value if not found (falling back to status `400`).
+
+Any provided headers will be passed to the `end()` function. Please see the documentation for that function for more information.
+
 ### `getAuthData()`
 
 Get the authorization data coming from the Lambda authorizer.

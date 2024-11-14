@@ -1,4 +1,5 @@
 export * from './functions/end.js';
+export * from './functions/endWithError.js';
 export * from './functions/getAuthData.js';
 export * from './functions/getCleanedDynamoItems.js';
 export * from './functions/getCorrelationId.js';
