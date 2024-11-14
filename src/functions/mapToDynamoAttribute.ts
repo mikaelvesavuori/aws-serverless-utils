@@ -24,8 +24,8 @@ export function mapToDynamoAttribute(value: any): Record<string, any> {
           acc[key] = mapToDynamoAttribute(val); // Recursively handle objects
           return acc;
         },
-        {} as { [key: string]: any }
-      )
+        {} as { [key: string]: any },
+      ),
     };
   }
 

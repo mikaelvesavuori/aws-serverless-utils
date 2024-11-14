@@ -10,7 +10,7 @@
 export function end(
   statusCode = 201,
   message?: Record<string, any> | number | string | boolean | null,
-  headers?: Record<string, any>
+  headers?: Record<string, any>,
 ) {
   const contentType =
     !message || typeof message === 'number' || typeof message === 'string'
@@ -19,7 +19,7 @@ export function end(
 
   const body = (() => {
     if (typeof message === 'string') return message;
-    else return JSON.stringify(message);
+    return JSON.stringify(message);
   })();
 
   if (!headers)
@@ -28,12 +28,14 @@ export function end(
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Credentials': true,
-      'Content-Type': contentType
+      'Content-Type': contentType,
     };
+
+  process.env.CORRELATION_ID = '';
 
   return {
     statusCode,
     body,
-    headers
+    headers,
   };
 }

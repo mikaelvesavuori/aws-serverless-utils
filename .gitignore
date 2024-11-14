@@ -1,4 +1,5 @@
 .dccache
+.DS_Store
 .env
 .webpack/
 lib/
@@ -6,11 +7,5 @@ build/
 coverage/
 node_modules/
 docs/
-*.tgz
-
-# Files
-.dccache
-.DS_Store
-.env
 *.tgz
 *.zip

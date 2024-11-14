@@ -5,12 +5,14 @@
  */
 export function getCleanedDynamoItems(
   items: DynamoItem | DynamoItem[],
-  includePkSk = false
+  includePkSk = false,
 ): Record<string, any>[] {
   if (!items) return [];
 
   const normalizedItems = Array.isArray(items) ? items : [items];
-  return normalizedItems.map((item: DynamoItem) => cleanDynamoData(item, includePkSk));
+  return normalizedItems.map((item: DynamoItem) =>
+    cleanDynamoData(item, includePkSk),
+  );
 }
 
 /**
@@ -22,7 +24,7 @@ export function getCleanedDynamoItems(
  */
 export function cleanDynamoData(
   data: Record<string, any>,
-  includePkSk = false
+  includePkSk = false,
 ): Record<string, any> {
   const cleanData: Record<string, any> = {};
 
@@ -65,10 +67,13 @@ export function extractDynamoValue(value: any): any {
   if (value.BS) return value.BS;
   if (value.L) return value.L.map((item: any) => extractDynamoValue(item));
   if (value.M) {
-    return Object.entries(value.M).reduce((acc: Record<string, any>, [k, v]) => {
-      acc[k] = extractDynamoValue(v);
-      return acc;
-    }, {});
+    return Object.entries(value.M).reduce(
+      (acc: Record<string, any>, [k, v]) => {
+        acc[k] = extractDynamoValue(v);
+        return acc;
+      },
+      {},
+    );
   }
   if (value.NULL) return null;
   if (value.BOOL) return value.BOOL;

@@ -13,7 +13,7 @@ Serverless is awesome but what happens when you have a ton of microservices and 
 - Saves you time when building AWS serverless solutions
 - Sensible helpers for common boring boilerplate stuff
 - Lightweight
-- Zero dependencies
+- Zero dependencies, unless you use `startLogger()` which returns [MikroLog](https://github.com/mikaelvesavuori/mikrolog)
 - Has 100% test coverage
 
 ## Usage
@@ -90,6 +90,16 @@ const result = {
   list: ['item1', 'item2']
 };
 ```
+
+### `getCorrelationId()`
+
+Get correlation ID from:
+
+1. Environment, via `process.env.CORRELATION_ID`
+2. Event headers (`event.headers.['x-correlation-id']` or `event.headers.['X-Correlation-Id']`)
+3. Event metadata (`event.detail.metadata.correlationId` or `event.detail.metadata.correlation_id`)
+4. Context request ID (`awsRequestId`)
+5. Empty string, if nothing is found
 
 ### `getInputBody()`
 
@@ -212,6 +222,12 @@ const result = {
   }
 };
 ```
+
+### `startLogger()`
+
+Starts an instance of [MikroLog](https://github.com/mikaelvesavuori/mikrolog) with correlation ID already set up and returns it.
+
+See the documentation for `getCorrelationId()` to understand how the ID is fetched.
 
 ## License
 

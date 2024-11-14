@@ -55,6 +55,15 @@ describe('Responses', () => {
   });
 });
 
+describe('State', () => {
+  test('It should wipe the CORRELATION_ID process variable when done', () => {
+    process.env.CORRELATION_ID = 'XXXXXX';
+    end()
+    const result = process.env.CORRELATION_ID;
+    expect(result).toBe('');
+  });
+});
+
 describe('Headers', () => {
   test('It should use the default headers', () => {
     expect(end(200).headers).toMatchObject(defaultHeaders);
