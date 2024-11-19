@@ -55,13 +55,13 @@ The resulting status code will be the value of `error.cause.statusCode` or it'll
 
 Any provided headers will be passed to the `end()` function. Please see the documentation for that function for more information.
 
-### `getAuthData()`
+### `getAuthContext()`
 
 Get the authorization data coming from the Lambda authorizer.
 
 ```ts
 export async function handler(event, context) {
-  const authData = getAuthData(event); // Get any data from the Lambda authorizer.
+  const authData = getAuthContext(event); // Get any data from the Lambda authorizer.
 }
 ```
 
