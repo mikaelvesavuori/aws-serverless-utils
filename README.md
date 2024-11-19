@@ -65,6 +65,14 @@ export async function handler(event, context) {
 }
 ```
 
+### `getBearerToken()`
+
+Extract the Bearer token from the Authorization header. The value must start with `Bearer`.
+
+```ts
+const token = getBearerToken({ Authorization: 'Bearer some-very-long-value-123-abc...' }); // Result: 'some-very-long-value-123-abc...'
+```
+
 ### `getCleanedDynamoItems()`
 
 Clean up and return DynamoDB items in a normalized format. Accepts one or multiple items and returns an array of cleaned objects. Returns a cleaned and parsed array of objects.
