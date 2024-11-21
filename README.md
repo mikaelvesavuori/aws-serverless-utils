@@ -134,6 +134,19 @@ export async function handler(event, context) {
 }
 ```
 
+### `getMetadata()`
+
+Get the contents of an EventBridge `metadata` object, as per the [data + metadata convention](https://www.boyney.io/blog/2022-02-11-event-payload-patterns).
+
+```ts
+export async function handler(event, context) {
+  const metadata = getMetadata(event); // EventBridge event
+  const result = {
+    tenantId: 'qwerty' // You'll get the `event.detail.metadata` data here
+  };
+}
+```
+
 ### `getPathParameters()`
 
 Get the `pathParameters` object if it exists, else an empty object.

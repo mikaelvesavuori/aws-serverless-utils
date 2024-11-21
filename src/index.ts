@@ -5,6 +5,7 @@ export * from './functions/getBearerToken.js';
 export * from './functions/getCleanedDynamoItems.js';
 export * from './functions/getCorrelationId.js';
 export * from './functions/getInputBody.js';
+export * from './functions/getMetadata.js';
 export * from './functions/getPathParameters.js';
 export * from './functions/getQueryStringParameters.js';
 export * from './functions/handleCors.js';
