@@ -24,7 +24,7 @@ export function endWithError(
   const message: string = error.message || '';
 
   const logger = MikroLog.start();
-  logger.error(error.message);
+  logger.error(error.message, statusCode);
 
   return end(statusCode, message, headers);
 }
