@@ -21,10 +21,10 @@ export function endWithError(
   headers?: Record<string, any>,
 ) {
   const statusCode: number = error?.cause?.statusCode || defaultErrorCode;
-  const message: string = error.message || '';
+  const message: string = error?.message || error || '';
 
   const logger = MikroLog.start();
-  logger.error(error.message, statusCode);
+  logger.error(message, statusCode);
 
   return end(statusCode, message, headers);
 }
