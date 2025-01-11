@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { getAuthContext } from '../src/functions/getAuthContext.js';
 
-import apiGatewayV2 from '../testdata/ApiGatewayV2.json';
+import apiGatewayV2 from '../testdata/ApiGatewayV2.json' with { type: 'json' };
 
 describe('Authenticated context', () => {
   const expected = {

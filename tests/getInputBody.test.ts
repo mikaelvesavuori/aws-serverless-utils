@@ -1,14 +1,16 @@
-import { test, describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { getInputBody } from '../src/functions/getInputBody.js';
 
-import apiGatewayV1 from '../testdata/ApiGatewayV1.json';
-import apiGatewayV2 from '../testdata/ApiGatewayV2.json';
-import eventBridgeEvent from '../testdata/EventBridgeEvent.json';
+import apiGatewayV1 from '../testdata/ApiGatewayV1.json' with { type: 'json' };
+import apiGatewayV2 from '../testdata/ApiGatewayV2.json' with { type: 'json' };
+import eventBridgeEvent from '../testdata/EventBridgeEvent.json' with {
+  type: 'json',
+};
 
 const expected = {
   organizationId: 'abc123',
-  recordId: 'qwerty'
+  recordId: 'qwerty',
 };
 
 describe('Plain object body', () => {

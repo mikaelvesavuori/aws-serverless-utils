@@ -1,14 +1,14 @@
-import { test, describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { getPathParameters } from '../src/functions/getPathParameters.js';
 
-import apiGatewayV1 from '../testdata/ApiGatewayV1.json';
-import apiGatewayV2 from '../testdata/ApiGatewayV2.json';
+import apiGatewayV1 from '../testdata/ApiGatewayV1.json' with { type: 'json' };
+import apiGatewayV2 from '../testdata/ApiGatewayV2.json' with { type: 'json' };
 
 describe('Path parameters', () => {
   const expected = {
     organizationId: 'abc123',
-    recordId: 'qwerty'
+    recordId: 'qwerty',
   };
 
   test('It should get the path parameters from an API Gateway V1 (REST API) object', () => {
