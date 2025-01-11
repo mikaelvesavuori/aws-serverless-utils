@@ -26,5 +26,7 @@ export function startLogger(
     context,
   });
 
+  MikroLog.logBuffer = []; // Safety valve
+
   return logger;
 }

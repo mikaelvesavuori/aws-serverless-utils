@@ -13,7 +13,7 @@ Serverless is awesome but what happens when you have a ton of microservices and 
 - Saves you time when building AWS serverless solutions
 - Sensible helpers for common boring boilerplate stuff
 - Lightweight
-- Zero dependencies, unless you use `startLogger()` which returns [MikroLog](https://github.com/mikaelvesavuori/mikrolog)
+- Zero dependencies, unless you use `end()`, `endWithError()`, or `startLogger()` which use [MikroLog](https://github.com/mikaelvesavuori/mikrolog)
 - Has 100% test coverage
 
 ## Usage
