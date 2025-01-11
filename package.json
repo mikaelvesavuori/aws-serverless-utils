@@ -1,7 +1,7 @@
 {
   "name": "aws-serverless-utils",
   "description": "Utility functions for AWS serverless services like Lambda, EventBridge, and DynamoDB",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "author": "Mikael Vesavuori",
   "license": "MIT",
   "type": "module",

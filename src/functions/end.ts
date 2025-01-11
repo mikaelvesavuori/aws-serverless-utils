@@ -1,3 +1,5 @@
+import { MikroLog } from 'mikrolog';
+
 /**
  * @description Utility function to create a valid AWS Lambda response object.
  * Note that headers will be completely replaced if you supply custom headers.
@@ -32,6 +34,7 @@ export function end(
     };
 
   process.env.CORRELATION_ID = '';
+  MikroLog.reset();
 
   return {
     statusCode,
