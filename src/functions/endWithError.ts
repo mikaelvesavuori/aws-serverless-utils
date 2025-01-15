@@ -17,17 +17,27 @@ import { end } from './end.js';
  *
  * This supports the optional `flushFn` argument as the regular `end()` function does.
  */
-export async function endWithError(
-  error: any,
-  defaultErrorCode = 400,
-  headers?: Record<string, any>,
-  flushFn?: Function,
-) {
+export async function endWithError(options?: EndWithErrorOptions) {
+  const error = options?.error;
+  const defaultErrorCode = options?.defaultErrorCode || 400;
+  const headers = options?.headers;
+  const flushFn = options?.flushFn;
+
   const statusCode: number = error?.cause?.statusCode || defaultErrorCode;
-  const message: string = error?.message || error || '';
+  const errorName: string = error?.name ? `${error?.name}: ` : '';
+  const errorMessage: string = error?.message || error || '';
+
+  const message = errorName + errorMessage;
 
   const logger = MikroLog.start();
   logger.error(message, statusCode);
 
-  return end(statusCode, message, headers, flushFn);
+  return end({ statusCode, message, headers, flushFn });
 }
+
+export type EndWithErrorOptions = {
+  error?: any;
+  defaultErrorCode?: number;
+  headers?: Record<string, any>;
+  flushFn?: Function;
+};

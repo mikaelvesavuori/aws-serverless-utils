@@ -34,7 +34,7 @@ describe('Responses', async () => {
   });
 
   test('It should respond with a user-provided code when one is provided', async () => {
-    const result = await end(204);
+    const result = await end({ statusCode: 204 });
     expect(result).toMatchObject(getResponse(204));
   });
 
@@ -42,7 +42,7 @@ describe('Responses', async () => {
     const response = getResponse(200);
     response.body = 'OK';
     response.headers['Content-Type'] = 'text/plain';
-    const result = await end(200, 'OK');
+    const result = await end({ statusCode: 200, message: 'OK' });
     expect(result).toMatchObject(response);
   });
 
@@ -50,7 +50,7 @@ describe('Responses', async () => {
     const response = getResponse(204);
     response.body = '9823916';
     response.headers['Content-Type'] = 'text/plain';
-    const result = await end(204, 9823916);
+    const result = await end({ statusCode: 204, message: 9823916 });
     expect(result).toMatchObject(response);
   });
 
@@ -58,9 +58,12 @@ describe('Responses', async () => {
     const response = getResponse(200);
     response.body = '{"timeCreated":"2024-10-27","itemId":"abc123"}';
     response.headers['Content-Type'] = 'application/json';
-    const result = await end(200, {
-      timeCreated: '2024-10-27',
-      itemId: 'abc123',
+    const result = await end({
+      statusCode: 200,
+      message: {
+        timeCreated: '2024-10-27',
+        itemId: 'abc123',
+      },
     });
     expect(result).toMatchObject(response);
   });
@@ -77,13 +80,13 @@ describe('State', () => {
 
 describe('Headers', () => {
   test('It should use the default headers', async () => {
-    const result = await end(200);
+    const result = await end({ statusCode: 200 });
     expect(result.headers).toMatchObject(defaultHeaders);
   });
 
   test('It should allow custom headers', async () => {
     const input = { 'X-Custom-Header': 'custom-value' };
-    const result = await end(200, null, input);
+    const result = await end({ statusCode: 200, headers: input });
     expect(result.headers).toMatchObject(input);
   });
 });
