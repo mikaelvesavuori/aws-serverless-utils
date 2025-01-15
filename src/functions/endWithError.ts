@@ -14,11 +14,14 @@ import { end } from './end.js';
  *
  * Any provided headers will be passed to the `end()` function.
  * Please see the documentation for that function for more information.
+ *
+ * This supports the optional `flushFn` argument as the regular `end()` function does.
  */
-export function endWithError(
+export async function endWithError(
   error: any,
   defaultErrorCode = 400,
   headers?: Record<string, any>,
+  flushFn?: Function,
 ) {
   const statusCode: number = error?.cause?.statusCode || defaultErrorCode;
   const message: string = error?.message || error || '';
@@ -26,5 +29,5 @@ export function endWithError(
   const logger = MikroLog.start();
   logger.error(message, statusCode);
 
-  return end(statusCode, message, headers);
+  return end(statusCode, message, headers, flushFn);
 }

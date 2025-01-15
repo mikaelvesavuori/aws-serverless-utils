@@ -1,4 +1,4 @@
-import { test, describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { end } from '../src/functions/end.js';
 
@@ -7,10 +7,13 @@ const defaultHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'text/plain'
+  'Content-Type': 'text/plain',
 };
 
-const getResponse = (statusCode = 201, body = undefined): Record<string, any> => {
+const getResponse = (
+  statusCode = 200,
+  body = undefined,
+): Record<string, any> => {
   return {
     body,
     headers: {
@@ -18,60 +21,69 @@ const getResponse = (statusCode = 201, body = undefined): Record<string, any> =>
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'text/plain'
+      'Content-Type': 'text/plain',
     },
-    statusCode
+    statusCode,
   };
 };
 
-describe('Responses', () => {
-  test('It should respond with a 201 when provided no values', () => {
-    expect(end()).toMatchObject(getResponse());
+describe('Responses', async () => {
+  test('It should respond with a 201 when provided no values', async () => {
+    const result = await end();
+    expect(result).toMatchObject(getResponse());
   });
 
-  test('It should respond with a user-provided code when one is provided', () => {
-    expect(end(204)).toMatchObject(getResponse(204));
+  test('It should respond with a user-provided code when one is provided', async () => {
+    const result = await end(204);
+    expect(result).toMatchObject(getResponse(204));
   });
 
-  test('It should handle string bodies', () => {
+  test('It should handle string bodies', async () => {
     const response = getResponse(200);
     response.body = 'OK';
     response.headers['Content-Type'] = 'text/plain';
-    expect(end(200, 'OK')).toMatchObject(response);
+    const result = await end(200, 'OK');
+    expect(result).toMatchObject(response);
   });
 
-  test('It should handle number bodies', () => {
+  test('It should handle number bodies', async () => {
     const response = getResponse(204);
     response.body = '9823916';
     response.headers['Content-Type'] = 'text/plain';
-    expect(end(204, 9823916)).toMatchObject(response);
+    const result = await end(204, 9823916);
+    expect(result).toMatchObject(response);
   });
 
-  test('It should handle object bodies', () => {
+  test('It should handle object bodies', async () => {
     const response = getResponse(200);
     response.body = '{"timeCreated":"2024-10-27","itemId":"abc123"}';
     response.headers['Content-Type'] = 'application/json';
-    expect(end(200, { timeCreated: '2024-10-27', itemId: 'abc123' })).toMatchObject(response);
+    const result = await end(200, {
+      timeCreated: '2024-10-27',
+      itemId: 'abc123',
+    });
+    expect(result).toMatchObject(response);
   });
 });
 
 describe('State', () => {
   test('It should wipe the CORRELATION_ID process variable when done', () => {
     process.env.CORRELATION_ID = 'XXXXXX';
-    end()
+    end();
     const result = process.env.CORRELATION_ID;
     expect(result).toBe('');
   });
 });
 
 describe('Headers', () => {
-  test('It should use the default headers', () => {
-    expect(end(200).headers).toMatchObject(defaultHeaders);
+  test('It should use the default headers', async () => {
+    const result = await end(200);
+    expect(result.headers).toMatchObject(defaultHeaders);
   });
 
-  test('It should allow custom headers', () => {
+  test('It should allow custom headers', async () => {
     const input = { 'X-Custom-Header': 'custom-value' };
-    const result = end(200, null, input).headers;
-    expect(result).toMatchObject(input);
+    const result = await end(200, null, input);
+    expect(result.headers).toMatchObject(input);
   });
 });

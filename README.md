@@ -29,7 +29,7 @@ const { end } = require('aws-serverless-utils');
 import { end } from 'aws-serverless-utils';
 
 // One example could be...
-return end(); // Returns a 201 with no message and CORS headers
+return await end(); // Returns a 200 with CORS headers but no message
 ```
 
 ## Functions
@@ -39,10 +39,16 @@ return end(); // Returns a 201 with no message and CORS headers
 Utility function to create a valid AWS Lambda response object. Note that headers will be completely replaced if you supply custom headers.
 
 ```ts
-return end(); // Returns a 201 with no message and CORS headers
-return end(204); // Returns a 204 with no message and CORS headers
-return end(200, { timeCreated: '2024-10-27', itemId: 'abc123' }); // Returns a 200 with an object message
-return end(200, null, { 'X-Custom-Header': 'custom-value' }); // Replaces the headers with a custom set of headers
+return await end(); // Returns a 200 with CORS headers but no message
+return await end(204); // Returns a 204 with CORS headers but no message
+return await end(200, { timeCreated: '2024-10-27', itemId: 'abc123' }); // Returns a 200 with an object message
+return await end(200, null, { 'X-Custom-Header': 'custom-value' }); // Replaces the headers with a custom set of headers
+
+async function flushFn() {
+  await sendLogsToService(MikroLog.logBuffer)
+};
+
+return await end(200, null, null, flushFn); // Runs a "flush" function before ending
 ```
 
 ### `endWithError()`
@@ -54,6 +60,8 @@ MikroLog will be initialized to log the error; because it's static, it will reus
 The resulting status code will be the value of `error.cause.statusCode` or it'll use the default value if not found (falling back to status `400`).
 
 Any provided headers will be passed to the `end()` function. Please see the documentation for that function for more information.
+
+This supports the optional `flushFn` argument as the regular `end()` function does.
 
 ### `getAuthContext()`
 
