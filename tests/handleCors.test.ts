@@ -1,4 +1,4 @@
-import { test, describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { handleCors } from '../src/functions/handleCors.js';
 
@@ -8,11 +8,11 @@ describe('CORS handling', () => {
     headers: {
       'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
       'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'text/plain'
+      'Content-Type': 'text/plain',
     },
-    statusCode: 200
+    statusCode: 200,
   };
 
   test('It should return a CORS-handling object', () => {
